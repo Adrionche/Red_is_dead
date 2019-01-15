@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehavior : MonoBehaviour {
+public class EnemyRedBehavior : MonoBehaviour
+{
 
     public GameObject m_fireBall = null;
     private int shoot_time = 0;
@@ -16,13 +17,13 @@ public class EnemyBehavior : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        shoot_time ++;
-        if (shoot_time % 30 == 0)
+        shoot_time++;
+        if (shoot_time % 180 == 0)
         {
             ShootFireball();
         }
     }
-    
+
     // Creates a fireball, and launches it
     private void ShootFireball()
     {

@@ -39,7 +39,7 @@ public class FireBehavior : MonoBehaviour {
     {
         // Destroys the fireball when it hits something, except the player or another fireball
         // (to prevent the fireball to be destroyed as soon as it is created)
-        if (collision.gameObject.tag != "Fireball" && collision.gameObject.tag != "Enemy")
+        if (collision.gameObject.tag != "Fireball" && collision.gameObject.tag != "Enemy" && collision.gameObject.tag != "EnemyRed")
         {
             Destroy(gameObject);
         } else

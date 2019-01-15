@@ -166,7 +166,7 @@ public class PlayerBehavior : MonoBehaviour
     {
         GameObject newFireball = Instantiate(m_fireBall, this.transform) as GameObject;
 
-        FireBehavior fireBallBehavior = newFireball.GetComponent<FireBehavior>();
+        LightningBehavior fireBallBehavior = newFireball.GetComponent<LightningBehavior>();
 
         if (fireBallBehavior != null)
         {

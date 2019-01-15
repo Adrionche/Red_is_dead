@@ -9,6 +9,7 @@ TagManager:
   - InstantDialog
   - Fireball
   - Enemy
+  - EnemyRed
   layers:
   - Default
   - TransparentFX
