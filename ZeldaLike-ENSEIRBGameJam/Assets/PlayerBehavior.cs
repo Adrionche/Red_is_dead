@@ -21,12 +21,17 @@ public class PlayerBehavior : MonoBehaviour
     public Sprite m_rightSprite = null;
     public Sprite m_backSprite = null;
 
+    public GameObject enemy = null;
+    public GameObject enemy_red = null;
+
     public GameObject m_fireBall = null; // Object the player can shoot
 
     public GameObject m_map = null;
     public DialogManager m_dialogDisplayer;
 
     private Dialog m_closestNPCDialog;
+
+    private bool combat_incoming = false;
 
     public AudioClip m_mapSound;
 
@@ -51,6 +56,12 @@ public class PlayerBehavior : MonoBehaviour
         if (m_dialogDisplayer.IsOnScreen() || m_map.activeSelf)
         {
             return;
+        }
+
+        if (combat_incoming)
+        {
+            combat_incoming = false;
+            StartCombat();
         }
 
         // Moves the player regarding the inputs
@@ -131,12 +142,15 @@ public class PlayerBehavior : MonoBehaviour
             if (m_closestNPCDialog != null)
             {
                 m_dialogDisplayer.SetDialog(m_closestNPCDialog.GetDialog());
+                combat_incoming = true;
             }
-            else 
+            else
             {
                 ShootFireball();
             }
         }
+
+        
     }
 
     // Changes the player sprite regarding it position
@@ -213,6 +227,12 @@ public class PlayerBehavior : MonoBehaviour
                 m_dialogDisplayer.SetDialog(instantDialog.GetDialog());
             }
         }
+    }
+
+    private void StartCombat()
+    {
+        Instantiate(enemy);
+        Instantiate(enemy_red);
     }
 
     // This is automatically called by Unity when the gameObject (here the player)
