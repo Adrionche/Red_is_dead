@@ -33,6 +33,15 @@ public class PlayerBehavior : MonoBehaviour
 
     private bool combat_incoming = false;
 
+    private Vector3 last_position;
+
+    private bool wait_start = false;
+    private bool wait_end = false;
+    private int manual_timer = 0;
+
+    private Vector3 _offset = new Vector3(0, 1552, 0);
+    private bool was_in_red = false;
+
     public AudioClip m_mapSound;
 
     Rigidbody2D m_rb2D;
@@ -62,6 +71,7 @@ public class PlayerBehavior : MonoBehaviour
         {
             combat_incoming = false;
             StartCombat();
+            wait_start = true;
         }
 
         // Moves the player regarding the inputs
@@ -110,6 +120,28 @@ public class PlayerBehavior : MonoBehaviour
     // physics (i.e. everything not related to RigidBody)
     private void Update()
     {
+        if (wait_start)
+        {
+            manual_timer++;
+            if (manual_timer == 60)
+            {
+                Instantiate(enemy);
+                Instantiate(enemy_red);
+                manual_timer = 0;
+                wait_start = false;
+            }
+        }
+
+        if (wait_end)
+        {
+            manual_timer++;
+            if (manual_timer == 60)
+            {
+                transform.position = GoBack();
+                manual_timer = 0;
+                wait_end = false;
+            }
+        }
 
         // If the player presses M, the map will be activated if not on screen
         // or desactivated if already on screen
@@ -151,6 +183,33 @@ public class PlayerBehavior : MonoBehaviour
         }
 
         
+    }
+
+    private Vector3 GoBack()
+    {
+        if (was_in_red)
+        {
+            was_in_red = false;
+            if (gameObject.transform.position.y < -200f)
+            {
+                return last_position;
+            }
+            else
+            {
+                return last_position + _offset;
+            }
+        }
+        else
+        {
+            if (gameObject.transform.position.y > -200f)
+            {
+                return last_position;
+            }
+            else
+            {
+                return last_position - _offset;
+            }
+        }
     }
 
     // Changes the player sprite regarding it position
@@ -231,8 +290,21 @@ public class PlayerBehavior : MonoBehaviour
 
     private void StartCombat()
     {
-        Instantiate(enemy);
-        Instantiate(enemy_red);
+        last_position = gameObject.transform.position;
+        if (gameObject.transform.position.y > -200f)
+        {
+            gameObject.transform.position = new Vector3(815f, -175f, 0f);
+        }
+        else
+        {
+            was_in_red = true;
+            gameObject.transform.position = new Vector3(815f, -1710f, 0f);
+        }
+    }
+
+    public void WaitEnd()
+    {
+        wait_end = true;
     }
 
     // This is automatically called by Unity when the gameObject (here the player)

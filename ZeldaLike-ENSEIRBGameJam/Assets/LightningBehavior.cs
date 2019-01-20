@@ -17,7 +17,13 @@ public class LightningBehavior : MonoBehaviour
 
    float m_speed = 100f; // Speed of the fireball
 
-   void Awake()
+    private int rand;
+
+    
+
+    GameObject player;
+
+    void Awake()
    {
        m_rb2D = gameObject.GetComponent<Rigidbody2D>();
        m_launchedTime = Time.realtimeSinceStartup;
@@ -30,9 +36,9 @@ public class LightningBehavior : MonoBehaviour
 
    void Update()
    {
-       // Checks if the fireball should remain on screen
-       // or if the life time has been reached
-       if (Time.realtimeSinceStartup > m_launchedTime + m_fireDuration)
+        // Checks if the fireball should remain on screen
+        // or if the life time has been reached
+        if (Time.realtimeSinceStartup > m_launchedTime + m_fireDuration)
        {
            Destroy(gameObject);
        }
@@ -40,19 +46,39 @@ public class LightningBehavior : MonoBehaviour
 
    private void OnCollisionEnter2D(Collision2D collision)
    {
-       // Destroys the fireball when it hits something, except the player or another fireball
-       // (to prevent the fireball to be destroyed as soon as it is created)
-       if (collision.gameObject.tag == "Enemy")
-       {
-           collision.gameObject.GetComponent<EnemyBehavior>().hp--;
-       }
-       else
-       {
-            if (collision.gameObject.tag == "EnemyRed")
+        // Destroys the fireball when it hits something, except the player or another fireball
+        // (to prevent the fireball to be destroyed as soon as it is created)
+        if (collision.gameObject.tag == "Player")
+        {
+            player = collision.gameObject;
+        }
+        else
+        {
+            if (collision.gameObject.tag == "Enemy")
             {
-                collision.gameObject.GetComponent<EnemyRedBehavior>().hp--;
+                collision.gameObject.GetComponent<EnemyBehavior>().hp--;
+                if (collision.gameObject.GetComponent<EnemyBehavior>().hp == 0)
+                {
+                    player.GetComponent<PlayerBehavior>().WaitEnd();
+                }
             }
-       }
+            else
+            {
+                if (collision.gameObject.tag == "EnemyRed")
+                {
+                    collision.gameObject.GetComponent<EnemyRedBehavior>().hp--;
+                    if (collision.gameObject.GetComponent<EnemyRedBehavior>().hp != 0)
+                    {
+                        rand = Random.Range(0, 10);
+                        player.GetComponent<PlayerBehavior>().m_dialogDisplayer.SetDialog(collision.gameObject.GetComponent<EnemyRedBehavior>().red_dialog[rand]);
+                    }
+                    else
+                    {
+                        player.GetComponent<PlayerBehavior>().WaitEnd();
+                    }
+                }
+            }
+        }
        if (collision.gameObject.tag != "Fireball" && collision.gameObject.tag != "Player")
        {
            Destroy(gameObject);

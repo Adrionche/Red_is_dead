@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1961964725896200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -640, y: -250, z: 0}
+  m_LocalPosition: {x: 750, y: -1650, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -70,6 +70,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_fireBall: {fileID: 1502969918981896, guid: dd8b7b33984359b49a25a7c46d305262, type: 2}
   hp: 10
+  red_dialog0:
+  - text: "A\xEFe !"
+    color: {r: 0, g: 0, b: 0, a: 0}
+  red_dialog1:
+  - text: Stop !
+    color: {r: 0, g: 0, b: 0, a: 0}
+  red_dialog2:
+  - text: "Arr\xEAte !"
+    color: {r: 0, g: 0, b: 0, a: 0}
+  red_dialog3:
+  - text: "\xC7a fait mal !"
+    color: {r: 0, g: 0, b: 0, a: 0}
+  red_dialog4:
+  - text: "Piti\xE9 ..."
+    color: {r: 0, g: 0, b: 0, a: 0}
+  red_dialog5:
+  - text: Non ...
+    color: {r: 0, g: 0, b: 0, a: 0}
+  red_dialog6:
+  - text: Laisse-moi tranquille !
+    color: {r: 0, g: 0, b: 0, a: 0}
+  red_dialog7:
+  - text: "Pourquoi tu fais \xE7a ?"
+    color: {r: 0, g: 0, b: 0, a: 0}
+  red_dialog8:
+  - text: Ouch !
+    color: {r: 0, g: 0, b: 0, a: 0}
+  red_dialog9:
+  - text: "\xC0 l'aide !"
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &212907620514648128
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -9,6 +9,24 @@ public class EnemyRedBehavior : MonoBehaviour
     private int shoot_time = 0;
     public int hp = 10;
 
+    public List<DialogPage> red_dialog0;
+    public List<DialogPage> red_dialog1;
+    public List<DialogPage> red_dialog2;
+    public List<DialogPage> red_dialog3;
+    public List<DialogPage> red_dialog4;
+    public List<DialogPage> red_dialog5;
+    public List<DialogPage> red_dialog6;
+    public List<DialogPage> red_dialog7;
+    public List<DialogPage> red_dialog8;
+    public List<DialogPage> red_dialog9;
+
+    public List<DialogPage>[] red_dialog;
+
+    private void Start()
+    {
+        red_dialog = new List<DialogPage>[] { red_dialog0, red_dialog1, red_dialog2, red_dialog3, red_dialog4, red_dialog5, red_dialog6, red_dialog7, red_dialog8, red_dialog9 };
+    }
+
 
     // Update is called once per frame
     private void Update()
