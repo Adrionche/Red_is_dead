@@ -19,7 +19,7 @@ public class DesMonstros : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player.transform.position = new Vector2(3102, 719);
+        Player.transform.position = new Vector2(3102, 921);
         Player.GetComponent<PlayerBehavior>().m_dialogDisplayer.SetDialog(Dial);
 
     }
