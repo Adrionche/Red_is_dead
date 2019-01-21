@@ -25,7 +25,7 @@ public class World_change : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         _time = Time.time - _startTime;
-        _swap = Random.Range(5, 20);
+        _swap = Random.Range(15, 35);
         if (_time > _swap)
         {
             _inRed = !_inRed;
