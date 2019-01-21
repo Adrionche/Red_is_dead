@@ -33,6 +33,8 @@ public class EnemyRedBehavior : MonoBehaviour
     {
         if (hp == 0)
         {
+            GameObject brother = GameObject.FindGameObjectWithTag("Enemy");
+            Destroy(brother);
             Destroy(gameObject);
         }
         shoot_time++;
