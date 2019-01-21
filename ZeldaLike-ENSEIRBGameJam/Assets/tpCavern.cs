@@ -13,7 +13,6 @@ public class tpCavern : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        GameObject.Find("GUI/Canvas/BlackScreen").GetComponent<Image>().color = new Color(0, 0, 0, 0);
     }
 	
 	// Update is called once per frame
@@ -28,6 +27,6 @@ public class tpCavern : MonoBehaviour {
         Game.SetActive(false);
         BadMusic.Play();
         Player.GetComponent<PlayerBehavior>().m_dialogDisplayer.SetDialog(Dial);
-        //GameObject.Find("GUI/Canvas/BlackScreen").GetComponent<Image>().color = new Color(0, 0, 0, 255);
+
     }
 }
